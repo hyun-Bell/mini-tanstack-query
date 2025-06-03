@@ -20,5 +20,8 @@
   ],
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.0"
   }
 }
