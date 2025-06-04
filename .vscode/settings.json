@@ -1,0 +1,4 @@
+{
+    // vs code 저장하면 자동 포맷팅
+    "editor.formatOnSave": true,
+}
