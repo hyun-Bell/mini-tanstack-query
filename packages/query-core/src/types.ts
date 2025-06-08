@@ -2,10 +2,22 @@ export type QueryKey = readonly unknown[];
 
 export type QueryFunction<TData> = () => Promise<TData>;
 
-export interface QueryOptions<TData> {
+export interface QueryState<TData = unknown> {
+  data: TData | undefined;
+  error: Error | null;
+  status: 'pending' | 'error' | 'success';
+  fetchStatus: 'idle' | 'fetching' | 'paused';
+  dataUpdatedAt: number;
+  errorUpdatedAt: number;
+  isInvalidated: boolean;
+  isPaused: boolean;
+}
+
+export interface QueryOptions<TData = unknown> {
   queryKey: QueryKey;
   queryFn: QueryFunction<TData>;
-  staleTime?: number; // 데이터가 신선한 상태로 유지되는 시간 (ms)
-  gcTime?: number; // 캐시에서 제거되기까지의 시간 (ms)
-  retry?: number | boolean; // 재시도 횟수 또는 활성화 여부
+  staleTime?: number;
+  gcTime?: number;
+  retry?: number | boolean;
+  initialData?: TData;
 }
